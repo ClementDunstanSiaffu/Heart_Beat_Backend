@@ -12,6 +12,9 @@ const heartSchema = mongoose.Schema({
     },
     time:{
         type:String
+    },
+    status:{
+        type:String
     }
 })
 

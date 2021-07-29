@@ -6,4 +6,5 @@ const routes = require('./routes')
 const PORT = process.env.PORT || 9000
 app.get('/leta/:heartbeat/:temperature',routes.leta)
 app.get("/pata",routes.pata)
+app.get("/futa/:id",routes.futa)
 app.listen(PORT)

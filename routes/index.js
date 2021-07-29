@@ -11,6 +11,7 @@ exports.leta = (req,res)=>{
     heart.temperature = temperature;
     heart.date = currentDate;
     heart.time = currentTime;
+    heart.status = false
     heart.save((err,docs)=>{
         if(!err){
             res.send("SUCCESS")
@@ -24,4 +25,23 @@ exports.pata = (req,res)=>{
             res.json(docs)
         }
     })
+}
+
+exports.futa = async (req,res)=>{
+    const id = req.params
+    console.log(id,"id server")
+    const heart = await HeartBeat.findOne({_id:id.id})
+    const docs = await HeartBeat.find((err,docs)=>{
+        if(!err){
+            return docs
+        }
+    })
+    const index = docs.findIndex((item)=>item._id == id.id)
+    if (index !== -1){
+        heart.status = true
+        await HeartBeat.replaceOne(docs[index],heart)
+    }
+ 
+   
+
 }
